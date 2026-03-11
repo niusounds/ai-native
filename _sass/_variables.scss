@@ -67,10 +67,10 @@ $border-radius-lg:  0.75rem;
 $border-radius-xl:  1rem;
 
 // Shadows & Glows
-$glow-primary:   0 0 20px rgba(0, 212, 255, 0.15);
-$glow-secondary: 0 0 20px rgba(123, 47, 255, 0.15);
+$glow-primary:   0 0 30px rgba(0, 212, 255, 0.25);
+$glow-secondary: 0 0 30px rgba(123, 47, 255, 0.25);
 $shadow-card:    0 4px 24px rgba(0, 0, 0, 0.4);
-$shadow-hover:   0 8px 40px rgba(0, 0, 0, 0.6);
+$shadow-hover:   0 12px 48px rgba(0, 0, 0, 0.7), 0 0 60px rgba(0, 212, 255, 0.1);
 
 // Transitions
 $transition-fast:   150ms ease;
