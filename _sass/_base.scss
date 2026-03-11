@@ -1,0 +1,235 @@
+@use "variables" as *;
+// ============================================
+// Base Styles
+// ============================================
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: $font-sans;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: $color-text;
+  background-color: $color-bg;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  color: $color-heading;
+  line-height: $line-height-tight;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: $font-size-4xl; }
+h2 { font-size: $font-size-3xl; }
+h3 { font-size: $font-size-2xl; }
+h4 { font-size: $font-size-xl; }
+h5 { font-size: $font-size-lg; }
+h6 { font-size: $font-size-base; }
+
+@include sm {
+  h1 { font-size: $font-size-5xl; }
+  h2 { font-size: $font-size-4xl; }
+  h3 { font-size: $font-size-3xl; }
+}
+
+// Paragraphs
+p {
+  margin-bottom: $spacing-4;
+  line-height: $line-height-loose;
+}
+
+// Links
+a {
+  color: $color-link;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-link-hover;
+    text-decoration: underline;
+  }
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Code
+code, kbd, samp {
+  font-family: $font-mono;
+  font-size: 0.9em;
+}
+
+code:not([class]) {
+  background: $color-bg-elevated;
+  color: $color-primary;
+  padding: 0.1em 0.4em;
+  border-radius: $border-radius-sm;
+  border: 1px solid $color-border;
+}
+
+pre {
+  background: $color-bg-elevated;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  padding: $spacing-6;
+  overflow-x: auto;
+  margin-bottom: $spacing-6;
+  position: relative;
+
+  code {
+    background: none;
+    color: $color-text;
+    padding: 0;
+    border: none;
+    font-size: $font-size-sm;
+    line-height: 1.7;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $color-primary, $color-secondary);
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+  }
+}
+
+// Blockquote
+blockquote {
+  border-left: 3px solid $color-primary;
+  padding: $spacing-4 $spacing-6;
+  margin: $spacing-6 0;
+  background: $color-bg-elevated;
+  border-radius: 0 $border-radius-lg $border-radius-lg 0;
+  color: $color-text-muted;
+  font-style: italic;
+
+  p:last-child { margin-bottom: 0; }
+}
+
+// Lists
+ul, ol {
+  padding-left: $spacing-6;
+  margin-bottom: $spacing-4;
+
+  li {
+    margin-bottom: $spacing-2;
+    line-height: $line-height-loose;
+  }
+}
+
+// Tables
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: $spacing-6;
+  font-size: $font-size-sm;
+
+  th, td {
+    padding: $spacing-3 $spacing-4;
+    text-align: left;
+    border-bottom: 1px solid $color-border;
+  }
+
+  th {
+    background: $color-bg-elevated;
+    color: $color-heading;
+    font-weight: 600;
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  tr:hover td {
+    background: $color-bg-elevated;
+  }
+}
+
+// Horizontal rule
+hr {
+  border: none;
+  border-top: 1px solid $color-border;
+  margin: $spacing-8 0;
+}
+
+// Focus styles (accessibility)
+:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+  border-radius: $border-radius-sm;
+}
+
+// Selection
+::selection {
+  background: rgba(0, 212, 255, 0.2);
+  color: $color-heading;
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-border;
+  border-radius: 3px;
+
+  &:hover {
+    background: $color-primary;
+  }
+}
+
+// Main content area (flex grow)
+.site-main {
+  flex: 1;
+}
+
+// Highlight.js / Rouge syntax highlighting
+.highlight {
+  margin: 0;
+
+  .hll { background-color: rgba(0, 212, 255, 0.1); }
+  .c, .cm, .cp, .cs, .c1 { color: #546e7a; font-style: italic; }
+  .k, .kd, .kn, .kr { color: #89ddff; font-weight: bold; }
+  .o, .ow { color: #89ddff; }
+  .na, .nb { color: #82aaff; }
+  .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .s1, .ss { color: #c3e88d; }
+  .n, .nn, .no, .bp { color: $color-text; }
+  .nf, .nc, .nd { color: #82aaff; }
+  .m, .mf, .mh, .mi, .mo, .il { color: #f78c6c; }
+  .nv, .vc, .vg, .vi { color: #f07178; }
+  .nt { color: #ff5572; }
+  .ni { color: $color-text; }
+  .ne { color: #f07178; }
+  .p { color: $color-text-muted; }
+}

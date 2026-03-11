@@ -1,0 +1,89 @@
+---
+layout: default
+---
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <div class="container">
+      {% if page.categories.size > 0 %}
+      <div class="post-categories">
+        {% for category in page.categories %}
+        <a href="{{ '/categories/' | append: category | relative_url }}" class="category-tag">{{ category }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
+      <div class="post-meta">
+        <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          {{ page.date | date: "%Y年%m月%d日" }}
+        </time>
+        {% if page.author %}
+        <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">{{ page.author }}</span>
+        </span>
+        {% endif %}
+        {% if page.reading_time %}
+        <span class="reading-time">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          {{ page.reading_time }}分で読めます
+        </span>
+        {% endif %}
+      </div>
+      {% if page.description %}
+      <p class="post-description">{{ page.description }}</p>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if page.image %}
+  <div class="post-hero-image">
+    <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" loading="lazy" width="1200" height="630" itemprop="image">
+  </div>
+  {% endif %}
+
+  <div class="post-content-wrapper">
+    <div class="container">
+      <div class="post-layout">
+        <div class="post-content" itemprop="articleBody">
+          {{ content }}
+        </div>
+        <aside class="post-sidebar">
+          <div class="toc-container" id="toc">
+            <h3 class="toc-title">目次</h3>
+            <nav id="toc-nav" aria-label="目次"></nav>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="post-footer">
+        {% if page.tags.size > 0 %}
+        <div class="post-tags">
+          <span class="tags-label">タグ:</span>
+          {% for tag in page.tags %}
+          <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <nav class="post-navigation" aria-label="前後の記事">
+          <div class="post-nav-prev">
+            {% if page.previous.url %}
+            <a href="{{ page.previous.url | relative_url }}" class="post-nav-link">
+              <span class="nav-direction">← 前の記事</span>
+              <span class="nav-title">{{ page.previous.title }}</span>
+            </a>
+            {% endif %}
+          </div>
+          <div class="post-nav-next">
+            {% if page.next.url %}
+            <a href="{{ page.next.url | relative_url }}" class="post-nav-link">
+              <span class="nav-direction">次の記事 →</span>
+              <span class="nav-title">{{ page.next.title }}</span>
+            </a>
+            {% endif %}
+          </div>
+        </nav>
+      </footer>
+    </div>
+  </div>
+</article>

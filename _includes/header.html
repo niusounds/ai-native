@@ -1,0 +1,45 @@
+<header class="site-header" role="banner">
+  <nav class="site-nav" aria-label="メインナビゲーション">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="{{ '/' | relative_url }}" class="site-logo" aria-label="{{ site.title }} ホーム">
+          <span class="logo-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+              <path d="M8 20L12 12L16 18L20 10L24 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="16" cy="8" r="2" fill="white" opacity="0.6"/>
+              <defs>
+                <linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#00d4ff"/>
+                  <stop offset="100%" stop-color="#7b2fff"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </span>
+          <span class="logo-text">{{ site.title }}</span>
+        </a>
+
+        <button class="nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="メニューを開く">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu" role="list">
+          <li>
+            <a href="{{ '/' | relative_url }}" class="nav-link{% if page.url == '/' %} nav-link--active{% endif %}">ホーム</a>
+          </li>
+          <li>
+            <a href="{{ '/categories' | relative_url }}" class="nav-link{% if page.url contains '/categories' %} nav-link--active{% endif %}">カテゴリ</a>
+          </li>
+          <li>
+            <a href="{{ '/archive' | relative_url }}" class="nav-link{% if page.url contains '/archive' %} nav-link--active{% endif %}">アーカイブ</a>
+          </li>
+          <li>
+            <a href="{{ '/about' | relative_url }}" class="nav-link{% if page.url contains '/about' %} nav-link--active{% endif %}">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

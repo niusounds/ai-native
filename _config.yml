@@ -1,0 +1,120 @@
+# Site settings
+title: "AI Native Engineer"
+tagline: "AIネイティブなソフトウェアエンジニアへの道"
+description: >-
+  AIネイティブなソフトウェアエンジニアになるために必要な知識・スキル・ツール・マインドセットを
+  体系的にまとめたブログ。プロンプトエンジニアリング、AIエージェント開発、LLMの活用から
+  AI時代のソフトウェア設計まで、最前線の情報をお届けします。
+url: "https://niusounds.github.io"
+baseurl: "/ai-native"
+lang: "ja"
+timezone: "Asia/Tokyo"
+
+# Author
+author:
+  name: "AI Native Engineer"
+  email: "hello@example.com"
+  twitter: "ai_native_eng"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: "highlight"
+    block:
+      line_numbers: false
+
+# Sass
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Pagination (jekyll-paginate-v2)
+pagination:
+  enabled: true
+  per_page: 10
+  permalink: "/page/:num/"
+  title: ":title - :num ページ目"
+  sort_field: "date"
+  sort_reverse: true
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-paginate-v2
+  - jekyll-minifier
+  - jekyll-last-modified-at
+
+# SEO
+twitter:
+  username: ai_native_eng
+  card: summary_large_image
+
+social:
+  name: "AI Native Engineer"
+  links:
+    - https://github.com/niusounds/ai-native
+
+google_analytics: ""
+
+# Feed (jekyll-feed)
+feed:
+  posts_limit: 20
+  excerpt_only: false
+
+# Minifier (performance)
+jekyll-minifier:
+  compress_css: true
+  compress_javascript: true
+  compress_json: true
+  compress_html: true
+  remove_comments: true
+
+# Sitemap
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      permalink: "/:categories/:year/:month/:day/:title/"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# Collections
+collections:
+  categories:
+    output: true
+    permalink: /categories/:name/
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - .bundle/
+  - .gitignore
+  - README.md
+  - AGENTS.md
+  - node_modules/
+  - "*.sh"
+
+# Include
+include:
+  - _pages
+
+# Permalinks
+permalink: /:categories/:year/:month/:day/:title/
+
+# Category directories
+category_archive:
+  type: liquid
+  path: /categories/
