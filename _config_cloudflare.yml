@@ -1,0 +1,10 @@
+# Cloudflare Pages override configuration
+# Use this config in addition to _config.yml when building for Cloudflare Pages:
+#   bundle exec jekyll build --config _config.yml,_config_cloudflare.yml
+#
+# Cloudflare Pages deploys at the domain root, so baseurl must be empty.
+# Without this override, Jekyll generates asset paths like /ai-native/assets/css/main.css
+# which do not exist on Cloudflare Pages, causing MIME type errors.
+
+url: "https://ai-native-b2y.pages.dev"
+baseurl: ""
