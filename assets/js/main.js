@@ -192,4 +192,45 @@
     });
   });
 
+  // ============================================
+  // Scroll Reveal Animations
+  // ============================================
+  (function () {
+    var revealElements = document.querySelectorAll(
+      '.topic-card, .post-card, .section-title, .hero-badge, .hero-title, .hero-description, .hero-actions'
+    );
+
+    if (!revealElements.length || !window.IntersectionObserver) return;
+
+    // Add reveal class and stagger delays to grid items
+    revealElements.forEach(function (el) {
+      el.classList.add('reveal');
+    });
+
+    // Add staggered delays to cards within grids
+    document.querySelectorAll('.topics-grid .topic-card').forEach(function (card, i) {
+      card.classList.add('reveal-delay-' + Math.min(i + 1, 6));
+    });
+
+    document.querySelectorAll('.posts-grid .post-card').forEach(function (card, i) {
+      card.classList.add('reveal-delay-' + Math.min(i + 1, 6));
+    });
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    revealElements.forEach(function (el) {
+      observer.observe(el);
+    });
+  }());
+
 })();

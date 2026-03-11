@@ -106,6 +106,7 @@ exclude:
   - AGENTS.md
   - node_modules/
   - "*.sh"
+  - _config_cloudflare.yml
 
 # Include
 include:

@@ -27,13 +27,29 @@
   position: sticky;
   top: 0;
   z-index: $z-nav;
-  background: rgba($color-bg, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid $color-border;
+  background: rgba($color-bg, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba($color-border, 0.6);
   height: $nav-height;
   display: flex;
   align-items: center;
+  box-shadow: 0 1px 0 rgba($color-primary, 0.08), 0 4px 24px rgba(0, 0, 0, 0.3);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba($color-primary, 0.5) 30%,
+      rgba($color-secondary, 0.5) 70%,
+      transparent 100%
+    );
+  }
 }
 
 .site-nav {
@@ -168,6 +184,23 @@
   border-top: 1px solid $color-border;
   padding: $spacing-16 0 $spacing-8;
   margin-top: auto;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      $color-secondary 30%,
+      $color-primary 70%,
+      transparent 100%
+    );
+    opacity: 0.5;
+  }
 }
 
 .footer-inner {
@@ -325,8 +358,25 @@
 
 .post-header {
   background: $color-bg-elevated;
+  position: relative;
   border-bottom: 1px solid $color-border;
   padding: $spacing-16 0 $spacing-10;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      $color-primary 30%,
+      $color-secondary 70%,
+      transparent 100%
+    );
+    opacity: 0.6;
+  }
 }
 
 .post-categories {
