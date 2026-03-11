@@ -99,10 +99,9 @@ pre {
   position: relative;
 
   code {
-    background: none;
     color: $color-text;
-    padding: 0;
-    border: none;
+    padding: 0 !important;
+    border: none !important;
     font-size: $font-size-sm;
     line-height: 1.7;
   }
