@@ -1,0 +1,49 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="{{ '/' | relative_url }}" class="footer-logo">{{ site.title }}</a>
+        <p class="footer-tagline">{{ site.tagline }}</p>
+        <p class="footer-description">AIネイティブなエンジニアを目指す方のための情報ハブ</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-section">
+          <h3 class="footer-section-title">カテゴリ</h3>
+          <ul class="footer-list" role="list">
+            <li><a href="{{ '/categories/prompt-engineering' | relative_url }}" class="footer-link">プロンプトエンジニアリング</a></li>
+            <li><a href="{{ '/categories/ai-agents' | relative_url }}" class="footer-link">AIエージェント開発</a></li>
+            <li><a href="{{ '/categories/llm' | relative_url }}" class="footer-link">LLM活用開発</a></li>
+            <li><a href="{{ '/categories/architecture' | relative_url }}" class="footer-link">AIアーキテクチャ</a></li>
+            <li><a href="{{ '/categories/tools' | relative_url }}" class="footer-link">AIツール</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-section-title">サイト</h3>
+          <ul class="footer-list" role="list">
+            <li><a href="{{ '/' | relative_url }}" class="footer-link">ホーム</a></li>
+            <li><a href="{{ '/archive' | relative_url }}" class="footer-link">アーカイブ</a></li>
+            <li><a href="{{ '/about' | relative_url }}" class="footer-link">About</a></li>
+            <li><a href="{{ '/feed.xml' | relative_url }}" class="footer-link">RSS フィード</a></li>
+            <li><a href="{{ '/sitemap.xml' | relative_url }}" class="footer-link">サイトマップ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        &copy; {{ site.time | date: '%Y' }} {{ site.title }}. Built with
+        <a href="https://jekyllrb.com" class="footer-link" target="_blank" rel="noopener noreferrer">Jekyll</a>.
+      </p>
+      <p class="footer-credits">
+        <a href="{{ '/feed.xml' | relative_url }}" class="footer-link footer-rss" aria-label="RSSフィード">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+          RSS
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
