@@ -1,19 +1,19 @@
 // ============================================
-// Variables - Light theme (Qiita/Zenn inspired)
+// Variables - Light theme (clean tech blog)
 // ============================================
 
 // Colors
-$color-bg:          #f5f7f9;
+$color-bg:          #f7f7f8;
 $color-bg-elevated: #ffffff;
 $color-bg-card:     #ffffff;
-$color-bg-hover:    #f0f4f8;
-$color-border:      #e2e8f0;
-$color-border-glow: rgba(62, 168, 255, 0.3);
+$color-bg-hover:    #f0f0f5;
+$color-border:      #e4e4e7;
+$color-border-glow: rgba(99, 102, 241, 0.3);
 
 // Brand colors
-$color-primary:     #3ea8ff;   // Zenn blue
-$color-secondary:   #0064b4;   // Darker blue
-$color-accent:      #00a86b;   // Green accent (Qiita-like)
+$color-primary:     #6366f1;   // Indigo
+$color-secondary:   #4f46e5;   // Deeper indigo
+$color-accent:      #10b981;   // Emerald accent
 $color-warning:     #f59e0b;
 
 // Text colors
@@ -73,7 +73,7 @@ $shadow-card:    0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.05);
 $shadow-hover:   0 4px 12px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
 
 // Code / Syntax (GitHub light theme)
-$color-code-bg:      #f0f4f8;
+$color-code-bg:      #f4f4f5;
 $color-code-text:    #d73a49;
 $color-pre-bg:       #f6f8fa;
 
