@@ -1,28 +1,28 @@
 // ============================================
-// Variables - Near-future dark theme
+// Variables - Light theme (clean tech blog)
 // ============================================
 
 // Colors
-$color-bg:          #0a0e1a;
-$color-bg-elevated: #0f1627;
-$color-bg-card:     #131929;
-$color-bg-hover:    #1a2236;
-$color-border:      #1e2d47;
-$color-border-glow: rgba(0, 212, 255, 0.2);
+$color-bg:          #f7f7f8;
+$color-bg-elevated: #ffffff;
+$color-bg-card:     #ffffff;
+$color-bg-hover:    #f0f0f5;
+$color-border:      #e4e4e7;
+$color-border-glow: rgba(99, 102, 241, 0.3);
 
 // Brand colors
-$color-primary:     #00d4ff;   // Neon blue
-$color-secondary:   #7b2fff;   // Purple
-$color-accent:      #00ff88;   // Green accent
-$color-warning:     #ffb347;
+$color-primary:     #6366f1;   // Indigo
+$color-secondary:   #4f46e5;   // Deeper indigo
+$color-accent:      #10b981;   // Emerald accent
+$color-warning:     #f59e0b;
 
 // Text colors
-$color-text:        #c8d6e8;
-$color-text-muted:  #7a8899;
-$color-text-faint:  #3d4f63;
-$color-heading:     #e8f0fa;
+$color-text:        #1a1a1a;
+$color-text-muted:  #6b7280;
+$color-text-faint:  #9ca3af;
+$color-heading:     #111827;
 $color-link:        $color-primary;
-$color-link-hover:  #33ddff;   // lighter shade of $color-primary
+$color-link-hover:  $color-secondary;
 
 // Typography
 $font-sans:    'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
@@ -66,11 +66,26 @@ $border-radius:     0.5rem;
 $border-radius-lg:  0.75rem;
 $border-radius-xl:  1rem;
 
-// Shadows & Glows
-$glow-primary:   0 0 30px rgba(0, 212, 255, 0.25);
-$glow-secondary: 0 0 30px rgba(123, 47, 255, 0.25);
-$shadow-card:    0 4px 24px rgba(0, 0, 0, 0.4);
-$shadow-hover:   0 12px 48px rgba(0, 0, 0, 0.7), 0 0 60px rgba(0, 212, 255, 0.1);
+// Shadows (clean, subtle for light theme)
+$glow-primary:   0 0 0 3px rgba($color-primary, 0.15);
+$glow-secondary: 0 0 0 3px rgba($color-secondary, 0.15);
+$shadow-card:    0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-hover:   0 4px 12px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+
+// Code / Syntax (GitHub light theme)
+$color-code-bg:      #f4f4f5;
+$color-code-text:    #d73a49;
+$color-pre-bg:       #f6f8fa;
+
+$syntax-highlight-bg: #fffbdd;
+$syntax-comment:      #6a737d;
+$syntax-keyword:      #d73a49;
+$syntax-name:         #005cc5;
+$syntax-string:       #032f62;
+$syntax-function:     #6f42c1;
+$syntax-number:       #005cc5;
+$syntax-variable:     #e36209;
+$syntax-tag:          #22863a;
 
 // Transitions
 $transition-fast:   150ms ease;

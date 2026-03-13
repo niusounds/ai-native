@@ -16,38 +16,22 @@
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   transition: all $transition-normal;
   white-space: nowrap;
-  position: relative;
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity $transition-fast;
-  }
-
-  &:hover::after {
-    opacity: 1;
-  }
 
   &--primary {
-    background: linear-gradient(135deg, $color-primary, #00a8cc);
-    color: $color-bg;
+    background: $color-primary;
+    color: #ffffff;
     border-color: $color-primary;
-    box-shadow: 0 2px 12px rgba($color-primary, 0.3), inset 0 1px 0 rgba(255,255,255,0.15);
 
     &:hover {
-      background: linear-gradient(135deg, #33ddff, $color-primary);
-      border-color: #33ddff;
+      background: $color-secondary;
+      border-color: $color-secondary;
       text-decoration: none;
-      color: $color-bg;
-      box-shadow: 0 0 32px rgba(0, 212, 255, 0.5), 0 4px 20px rgba($color-primary, 0.3);
+      color: #ffffff;
       transform: translateY(-1px);
+      box-shadow: $shadow-hover;
     }
 
     &:active {
@@ -56,18 +40,16 @@
   }
 
   &--secondary {
-    background: transparent;
+    background: $color-bg-elevated;
     color: $color-text;
     border-color: $color-border;
-    backdrop-filter: blur(4px);
 
     &:hover {
       border-color: $color-primary;
       color: $color-primary;
       text-decoration: none;
-      background: rgba($color-primary, 0.08);
-      box-shadow: 0 0 20px rgba($color-primary, 0.15);
       transform: translateY(-1px);
+      box-shadow: $shadow-hover;
     }
   }
 }
@@ -119,21 +101,17 @@
   margin-bottom: $spacing-8;
   position: relative;
   display: inline-block;
-  background: linear-gradient(135deg, $color-heading, rgba($color-heading, 0.8));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: $color-heading;
 
   &::after {
     content: '';
     position: absolute;
     bottom: -$spacing-2;
     left: 0;
-    width: 60px;
+    width: 40px;
     height: 3px;
-    background: linear-gradient(90deg, $color-primary, $color-secondary);
+    background: $color-primary;
     border-radius: 2px;
-    box-shadow: 0 0 10px rgba($color-primary, 0.5);
   }
 }
 
@@ -169,6 +147,8 @@
   position: relative;
   overflow: hidden;
   padding: $spacing-20 0 $spacing-24;
+  background: $color-bg-elevated;
+  border-bottom: 1px solid $color-border;
 
   @include md {
     padding: $spacing-24 0;
@@ -176,64 +156,15 @@
 }
 
 .hero-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+  display: none;
 }
 
 .hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba($color-primary, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba($color-primary, 0.07) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-  animation: gridShift 20s linear infinite;
-}
-
-@keyframes gridShift {
-  0% { background-position: 0 0; }
-  100% { background-position: 40px 40px; }
+  display: none;
 }
 
 .hero-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-
-  &--1 {
-    width: 700px;
-    height: 700px;
-    background: $color-primary;
-    top: -250px;
-    right: -150px;
-    opacity: 0.18;
-    animation: floatGlow1 12s ease-in-out infinite;
-  }
-
-  &--2 {
-    width: 500px;
-    height: 500px;
-    background: $color-secondary;
-    bottom: -150px;
-    left: -100px;
-    opacity: 0.18;
-    animation: floatGlow2 15s ease-in-out infinite;
-  }
-}
-
-@keyframes floatGlow1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.05); }
-  66% { transform: translate(-20px, 30px) scale(0.95); }
-}
-
-@keyframes floatGlow2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(-30px, 20px) scale(1.05); }
-  66% { transform: translate(20px, -30px) scale(0.95); }
+  display: none;
 }
 
 .hero-content {
@@ -247,7 +178,7 @@
   gap: $spacing-2;
   padding: $spacing-1 $spacing-3;
   background: rgba($color-primary, 0.1);
-  border: 1px solid rgba($color-primary, 0.35);
+  border: 1px solid rgba($color-primary, 0.3);
   border-radius: 999px;
   font-size: $font-size-xs;
   font-weight: 600;
@@ -255,7 +186,6 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: $spacing-6;
-  box-shadow: 0 0 20px rgba($color-primary, 0.15), inset 0 0 20px rgba($color-primary, 0.05);
 }
 
 .hero-badge-dot {
@@ -263,13 +193,6 @@
   height: 7px;
   background: $color-primary;
   border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-  box-shadow: 0 0 8px $color-primary;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px $color-primary; }
-  50% { opacity: 0.6; transform: scale(0.8); box-shadow: 0 0 4px $color-primary; }
 }
 
 .hero-title {
@@ -293,11 +216,7 @@
 
 .hero-title-accent {
   display: block;
-  background: linear-gradient(135deg, $color-primary 0%, $color-secondary 50%, $color-accent 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 0 30px rgba($color-primary, 0.4));
+  color: $color-primary;
 }
 
 .hero-description {
@@ -318,26 +237,9 @@
 
 .topics-section {
   padding: $spacing-20 0;
-  background: $color-bg-elevated;
+  background: $color-bg;
   border-top: 1px solid $color-border;
   border-bottom: 1px solid $color-border;
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg,
-      transparent 0%,
-      $color-primary 30%,
-      $color-secondary 70%,
-      transparent 100%
-    );
-    opacity: 0.6;
-  }
 }
 
 .topics-grid {
@@ -355,49 +257,20 @@
 }
 
 .topic-card {
-  background: $color-bg;
+  background: $color-bg-elevated;
   border: 1px solid $color-border;
   border-radius: $border-radius-xl;
   padding: $spacing-6;
   transition: all $transition-normal;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, $color-primary, $color-secondary);
-    opacity: 0;
-    transition: opacity $transition-normal;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba($color-primary, 0.06), transparent 70%);
-    opacity: 0;
-    transition: opacity $transition-normal;
-    pointer-events: none;
-  }
 
   &:hover {
-    border-color: rgba($color-primary, 0.4);
-    transform: translateY(-6px);
-    box-shadow: $glow-primary, $shadow-hover;
-
-    &::before { opacity: 1; }
-    &::after { opacity: 1; }
+    border-color: $color-primary;
+    transform: translateY(-4px);
+    box-shadow: $shadow-hover;
 
     .topic-icon {
       background: rgba($color-primary, 0.15);
       border-color: rgba($color-primary, 0.4);
-      box-shadow: 0 0 20px rgba($color-primary, 0.2);
-      transform: scale(1.05);
     }
   }
 }
@@ -475,27 +348,11 @@
   display: flex;
   flex-direction: column;
   transition: all $transition-normal;
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, $color-primary, $color-secondary);
-    opacity: 0;
-    transition: opacity $transition-normal;
-    z-index: 1;
-  }
 
   &:hover {
-    border-color: rgba($color-primary, 0.4);
-    transform: translateY(-6px);
-    box-shadow: $glow-primary, $shadow-hover;
-
-    &::before { opacity: 1; }
+    border-color: rgba($color-primary, 0.5);
+    transform: translateY(-4px);
+    box-shadow: $shadow-hover;
   }
 }
 
@@ -663,7 +520,7 @@
   top: $spacing-3;
   right: $spacing-3;
   padding: $spacing-1 $spacing-2;
-  background: $color-bg-card;
+  background: $color-bg-elevated;
   border: 1px solid $color-border;
   border-radius: $border-radius-sm;
   color: $color-text-muted;
@@ -678,7 +535,7 @@
   &:hover {
     color: $color-primary;
     border-color: $color-primary;
-    background: rgba($color-primary, 0.08);
+    background: rgba($color-primary, 0.05);
   }
 }
 
