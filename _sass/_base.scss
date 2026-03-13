@@ -82,15 +82,15 @@ code, kbd, samp {
 }
 
 code:not([class]) {
-  background: $color-bg-elevated;
-  color: $color-primary;
+  background: $color-code-bg;
+  color: $color-code-text;
   padding: 0.1em 0.4em;
   border-radius: $border-radius-sm;
   border: 1px solid $color-border;
 }
 
 pre {
-  background: $color-bg-elevated;
+  background: $color-pre-bg;
   border: 1px solid $color-border;
   border-radius: $border-radius-lg;
   padding: $spacing-6;
@@ -105,17 +105,6 @@ pre {
     border: none;
     font-size: $font-size-sm;
     line-height: 1.7;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, $color-primary, $color-secondary);
-    border-radius: $border-radius-lg $border-radius-lg 0 0;
   }
 }
 
@@ -186,7 +175,7 @@ hr {
 
 // Selection
 ::selection {
-  background: rgba(0, 212, 255, 0.2);
+  background: rgba(62, 168, 255, 0.2);
   color: $color-heading;
 }
 
@@ -205,7 +194,7 @@ hr {
   border-radius: 3px;
 
   &:hover {
-    background: $color-primary;
+    background: $color-text-muted;
   }
 }
 
@@ -234,22 +223,22 @@ hr {
 .reveal-delay-5 { transition-delay: 0.5s; }
 .reveal-delay-6 { transition-delay: 0.6s; }
 
-// Highlight.js / Rouge syntax highlighting
+// Highlight.js / Rouge syntax highlighting (GitHub light theme)
 .highlight {
   margin: 0;
 
-  .hll { background-color: rgba(0, 212, 255, 0.1); }
-  .c, .cm, .cp, .cs, .c1 { color: #546e7a; font-style: italic; }
-  .k, .kd, .kn, .kr { color: #89ddff; font-weight: bold; }
-  .o, .ow { color: #89ddff; }
-  .na, .nb { color: #82aaff; }
-  .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .s1, .ss { color: #c3e88d; }
+  .hll { background-color: $syntax-highlight-bg; }
+  .c, .cm, .cp, .cs, .c1 { color: $syntax-comment; font-style: italic; }
+  .k, .kd, .kn, .kr { color: $syntax-keyword; font-weight: bold; }
+  .o, .ow { color: $syntax-keyword; }
+  .na, .nb { color: $syntax-name; }
+  .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .s1, .ss { color: $syntax-string; }
   .n, .nn, .no, .bp { color: $color-text; }
-  .nf, .nc, .nd { color: #82aaff; }
-  .m, .mf, .mh, .mi, .mo, .il { color: #f78c6c; }
-  .nv, .vc, .vg, .vi { color: #f07178; }
-  .nt { color: #ff5572; }
+  .nf, .nc, .nd { color: $syntax-function; }
+  .m, .mf, .mh, .mi, .mo, .il { color: $syntax-number; }
+  .nv, .vc, .vg, .vi { color: $syntax-variable; }
+  .nt { color: $syntax-tag; }
   .ni { color: $color-text; }
-  .ne { color: #f07178; }
+  .ne { color: $syntax-variable; }
   .p { color: $color-text-muted; }
 }
