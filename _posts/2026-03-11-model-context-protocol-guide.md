@@ -7,6 +7,7 @@ categories: [ai-agents]
 tags: [MCP, AIエージェント, Anthropic, Claude, ツール連携, プロトコル]
 author: "AI Native Engineer"
 reading_time: 15
+mermaid: true
 ---
 
 ## はじめに

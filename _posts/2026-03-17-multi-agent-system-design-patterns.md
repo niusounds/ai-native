@@ -7,6 +7,7 @@ categories: [ai-agents]
 tags: [マルチエージェント, LangGraph, 設計パターン, アーキテクチャ, LLM, 上級, エージェント連携]
 author: "AI Native Engineer"
 reading_time: 18
+mermaid: true
 ---
 
 ## はじめに：なぜ「1つのエージェント」では足りないのか

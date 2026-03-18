@@ -33,6 +33,24 @@
 <meta name="theme-color" content="#ffffff">
 <meta name="color-scheme" content="light">
 
+<!-- Mermaid diagram rendering -->
+{% if page.mermaid %}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('code.language-mermaid').forEach(function(el) {
+      var wrapper = el.parentElement;
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = el.textContent;
+      wrapper.replaceWith(pre);
+    });
+    mermaid.run();
+  });
+</script>
+{% endif %}
+
 <!-- Structured Data -->
 {% if page.layout == 'post' %}
 <script type="application/ld+json">

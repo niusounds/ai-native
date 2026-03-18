@@ -7,6 +7,7 @@ categories: [llm]
 tags: [Evals, LLM評価, テスト, 品質管理, LLM-as-a-Judge, PromptFoo, LangSmith, プロダクション]
 author: "AI Native Engineer"
 reading_time: 16
+mermaid: true
 ---
 
 ## はじめに：「なんとなく動いている」AIから脱却する
