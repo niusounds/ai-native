@@ -513,6 +513,57 @@
   }
 }
 
+// ---- Post Status Badges (read history) ----
+
+.post-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15em 0.5em;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  margin-bottom: $spacing-2;
+  letter-spacing: 0.04em;
+
+  &--read {
+    background: rgba($color-text-muted, 0.1);
+    color: $color-text-muted;
+    border: 1px solid rgba($color-text-muted, 0.2);
+  }
+
+  &--new {
+    background: rgba($color-accent, 0.12);
+    color: $color-accent;
+    border: 1px solid rgba($color-accent, 0.35);
+  }
+}
+
+.post-card--read {
+  opacity: 0.72;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.post-card--new {
+  border-color: rgba($color-accent, 0.4);
+}
+
+.archive-post-item--read {
+  opacity: 0.65;
+}
+
+.archive-post-item--new {
+  .archive-post-title {
+    color: $color-accent;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
 // ---- Copy Code Button ----
 
 .copy-btn {

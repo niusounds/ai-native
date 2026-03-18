@@ -193,6 +193,92 @@
   });
 
   // ============================================
+  // Read History (localStorage)
+  // ============================================
+  (function () {
+    var STORAGE_KEY = 'ai-native-read-posts';
+
+    function getReadPosts() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveReadPost(url, date) {
+      var posts = getReadPosts();
+      posts[url] = date;
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+      } catch (e) {}
+    }
+
+    function getLatestReadDate(readPosts) {
+      var latest = null;
+      Object.keys(readPosts).forEach(function (url) {
+        var d = new Date(readPosts[url]);
+        if (!latest || d > latest) {
+          latest = d;
+        }
+      });
+      return latest;
+    }
+
+    function createBadge(type) {
+      var badge = document.createElement('span');
+      badge.className = 'post-status-badge post-status-badge--' + type;
+      badge.textContent = type === 'read' ? '既読' : '新着';
+      return badge;
+    }
+
+    function getPostStatus(url, date, readPosts, latestDate) {
+      if (readPosts[url]) return 'read';
+      if (latestDate && new Date(date) > latestDate) return 'new';
+      return null;
+    }
+
+    // Record current post as read
+    var postArticle = document.querySelector('article.post[data-post-url]');
+    if (postArticle) {
+      var postUrl = postArticle.getAttribute('data-post-url');
+      var postDate = postArticle.getAttribute('data-post-date');
+      if (postUrl && postDate) {
+        saveReadPost(postUrl, postDate);
+      }
+    }
+
+    var readPosts = getReadPosts();
+    var latestReadDate = getLatestReadDate(readPosts);
+
+    // Apply badges to post cards (home page)
+    document.querySelectorAll('.post-card[data-post-url]').forEach(function (card) {
+      var url = card.getAttribute('data-post-url');
+      var date = card.getAttribute('data-post-date');
+      var cardBody = card.querySelector('.post-card-body');
+      if (!cardBody) return;
+
+      var status = getPostStatus(url, date, readPosts, latestReadDate);
+      if (status) {
+        card.classList.add('post-card--' + status);
+        cardBody.insertBefore(createBadge(status), cardBody.firstChild);
+      }
+    });
+
+    // Apply badges to archive list items
+    document.querySelectorAll('.archive-post-item[data-post-url]').forEach(function (item) {
+      var url = item.getAttribute('data-post-url');
+      var date = item.getAttribute('data-post-date');
+
+      var status = getPostStatus(url, date, readPosts, latestReadDate);
+      if (status) {
+        item.classList.add('archive-post-item--' + status);
+        item.appendChild(createBadge(status));
+      }
+    });
+  }());
+
+  // ============================================
   // Scroll Reveal Animations
   // ============================================
   (function () {

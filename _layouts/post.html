@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting" data-post-url="{{ page.url | relative_url }}" data-post-date="{{ page.date | date_to_xmlschema }}">
   <header class="post-header">
     <div class="container">
       {% if page.categories.size > 0 %}
