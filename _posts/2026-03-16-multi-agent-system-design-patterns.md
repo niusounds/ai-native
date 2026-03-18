@@ -7,6 +7,7 @@ categories: [architecture]
 tags: [マルチエージェント, アーキテクチャ, エージェント設計, LangGraph, CrewAI, 分散AI, 並列処理, 上級]
 author: "AI Native Engineer"
 reading_time: 18
+mermaid: true
 ---
 
 ## はじめに：一匹狼のエージェントから、チームへ
