@@ -106,7 +106,7 @@ layout: default
       </div>
       <div class="posts-grid">
         {% for post in paginator.posts %}
-        <article class="post-card">
+        <article class="post-card" data-post-url="{{ post.url | relative_url }}" data-post-date="{{ post.date | date_to_xmlschema }}">
           {% if post.image %}
           <div class="post-card-image">
             <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" loading="lazy" width="800" height="420">

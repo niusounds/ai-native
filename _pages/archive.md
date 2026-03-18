@@ -12,7 +12,7 @@ permalink: /archive/
   <h2 class="archive-year-title">{{ year.name }}年</h2>
   <ul class="archive-list" role="list">
     {% for post in year.items %}
-    <li class="archive-post-item">
+    <li class="archive-post-item" data-post-url="{{ post.url | relative_url }}" data-post-date="{{ post.date | date_to_xmlschema }}">
       <time class="archive-post-date" datetime="{{ post.date | date_to_xmlschema }}">
         {{ post.date | date: "%m/%d" }}
       </time>
