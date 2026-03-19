@@ -19,6 +19,7 @@ tools:
   web-fetch:
 safe-outputs:
   create-pull-request:
+    auto-merge: true
 ---
 
 # write-post
