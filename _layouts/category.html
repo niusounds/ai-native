@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<div class="page-wrapper">
+  <div class="container">
+    <header class="page-header">
+      <h1 class="page-title">{{ page.title | escape }}</h1>
+      {% if page.description %}
+      <p class="page-description">{{ page.description }}</p>
+      {% endif %}
+    </header>
+
+    {% assign category_posts = site.posts | where_exp: "post", "post.categories contains page.slug" %}
+    {% if category_posts.size > 0 %}
+    <div class="posts-grid">
+      {% for post in category_posts %}
+      <article class="post-card" data-post-url="{{ post.url | relative_url }}" data-post-date="{{ post.date | date_to_xmlschema }}">
+        {% if post.image %}
+        <div class="post-card-image">
+          <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" loading="lazy" width="800" height="420">
+        </div>
+        {% endif %}
+        <div class="post-card-body">
+          <h2 class="post-card-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h2>
+          <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%Y年%m月%d日" }}
+            </time>
+            {% if post.reading_time %}
+            <span class="post-card-reading-time">{{ post.reading_time }}分</span>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-posts">このカテゴリにはまだ記事がありません。</p>
+    {% endif %}
+  </div>
+</div>
