@@ -82,11 +82,9 @@ code, kbd, samp {
 }
 
 code:not([class]) {
-  background: $color-code-bg;
   color: $color-code-text;
   padding: 0.1em 0.4em;
   border-radius: $border-radius-sm;
-  border: 1px solid $color-border;
 }
 
 pre {
