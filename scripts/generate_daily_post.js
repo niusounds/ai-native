@@ -19,7 +19,7 @@ async function generatePost() {
     }
 
     const agentsMd = fs.readFileSync(agentsMdPath, 'utf8');
-    
+
     // 引数からトピックを取得（デフォルト値あり）
     const topic = process.argv[2] || "AIエージェントの自律化における最新トレンドと課題";
 
@@ -83,10 +83,10 @@ ${agentsMd}
         // ファイル名の抽出
         const filenameMatch = content.match(/FILENAME:\s*(.+)/);
         let filename = filenameMatch ? filenameMatch[1].trim() : `${dateStr}-generated-post.md`;
-        
+
         // ファイル名指定行を除去
         content = content.replace(/FILENAME:\s*.+/, '').trim();
-        
+
         // Markdownブロックで囲まれている場合の除去
         content = content.replace(/^```markdown\n/, '').replace(/\n```$/, '');
 
