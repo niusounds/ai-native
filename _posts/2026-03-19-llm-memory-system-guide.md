@@ -107,6 +107,7 @@ def format_messages(messages):
 
 重要度スコアリングで**何を残すか**を判断する手法も有効です：
 
+{% raw %}
 ```python
 from dataclasses import dataclass
 from typing import Optional
@@ -128,13 +129,14 @@ def score_importance(message: str, llm) -> float:
 
 JSONで返答: {{"score": 0.0, "reason": "理由"}}"""
 
-    result = llm.invoke(prompt).content
     try:
-        data = json.loads(result)
+        response = llm.invoke(prompt)
+        data = json.loads(response.content)
         return float(data["score"])
     except Exception:
         return 0.3  # デフォルト
 ```
+{% endraw %}
 
 ## エピソード記憶：過去の会話を検索可能にする
 

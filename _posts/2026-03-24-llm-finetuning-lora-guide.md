@@ -411,11 +411,13 @@ def generate_training_data(topic: str, num_samples: int = 100) -> list[dict]:
     トピック: {topic}
     
     各データは以下のJSON形式で出力してください：
+    {% raw %}
     {{
       "instruction": "タスクの指示文",
       "input": "追加の文脈や入力データ（不要な場合は空文字）",
       "output": "理想的な回答"
     }}
+    {% endraw %}
     
     多様性のために：
     - 難易度を易しい・普通・難しいで均等に分散する

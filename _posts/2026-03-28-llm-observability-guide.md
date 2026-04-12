@@ -566,6 +566,7 @@ graph LR
     J --> K[CI/CDでの回帰テスト]
 ```
 
+{% raw %}
 ```python
 # eval_pipeline.py
 from langfuse import Langfuse
@@ -611,15 +612,17 @@ def evaluate_response_quality(
     score = result["score"]
     reason = result.get("reason", "")
     
-    # スコアをトレースに記録
+    # 評価結果をLangfuseに記録
     langfuse.score(
         trace_id=trace_id,
-        name="llm_judge_quality",
+        name="llm-as-judge-score",
         value=score,
         comment=reason
     )
     
     return score
+```
+{% endraw %}
 
 def run_eval_pipeline(sample_rate: float = 0.1):
     """本番トレースの一部を自動評価"""
