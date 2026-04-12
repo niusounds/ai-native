@@ -26,8 +26,6 @@ reading_time: 17
 - メモリシステム全体のアーキテクチャ設計
 - 実運用で注意すべき落とし穴
 
----
-
 ## メモリの4分類：認知科学からの借用
 
 人間の記憶研究から、AIエージェントのメモリを4種類に分類するモデルが広く使われています。
@@ -40,8 +38,6 @@ reading_time: 17
 | **手続き記憶（Procedural Memory）** | 自転車の乗り方 | 成功した問題解決パターン・ワークフロー |
 
 この4分類を念頭に置いて、それぞれの実装を見ていきましょう。
-
----
 
 ## 1. 作業記憶（Working Memory）：コンテキストウィンドウの賢い管理
 
@@ -132,8 +128,6 @@ MAX_TOKENS = 100_000  # コンテキストの上限の約半分を目安に
 if count_tokens(messages) > MAX_TOKENS:
     manager._compress()
 ```
-
----
 
 ## 2. エピソード記憶（Episodic Memory）：過去の経験を蓄積する
 
@@ -273,8 +267,6 @@ async def execute_task(agent, task: str, memory: EpisodicMemory):
     return result
 ```
 
----
-
 ## 3. 意味記憶（Semantic Memory）：構造化された知識の管理
 
 ### 概念
@@ -378,8 +370,6 @@ class SemanticMemory:
         return "\n".join(lines)
 ```
 
----
-
 ## 4. 手続き記憶（Procedural Memory）：成功パターンの自動学習
 
 ### 概念
@@ -445,6 +435,7 @@ class ProceduralMemory:
         # 実装省略：成功率の移動平均を更新
         pass
 
+{% raw %}
     def synthesize_new_procedure(
         self,
         task: str,
@@ -483,9 +474,9 @@ class ProceduralMemory:
         response = self.llm.invoke(prompt)
         # JSONパースして手続きを保存
         # ... (実装省略)
-```
+{% endraw %}
 
----
+```
 
 ## メモリシステムの統合アーキテクチャ
 
@@ -560,8 +551,6 @@ class AgentMemoryOrchestrator:
         conversation = f"タスク: {task}\n結果: {episode.outcome}"
         self.semantic.extract_and_update(conversation)
 ```
-
----
 
 ## 実装時の注意点とベストプラクティス
 
@@ -675,8 +664,6 @@ builder.add_edge("agent", "update_memory")
 builder.add_edge("update_memory", END)
 ```
 
----
-
 ## まとめ：記憶を持つエージェントの設計原則
 
 AIエージェントのメモリシステムを設計する際の核心的な原則をまとめます：
@@ -707,8 +694,6 @@ def save_user_memory(user_id: str, data: dict):
 
 # これだけでも「ユーザーの設定を覚える」エージェントが作れます
 ```
-
----
 
 ## 参考資料
 

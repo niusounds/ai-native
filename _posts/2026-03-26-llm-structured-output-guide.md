@@ -30,8 +30,6 @@ AIアプリを本番運用した経験のあるエンジニアなら、必ずこ
 - Pydanticバリデーションとエラーリカバリ戦略
 - 本番環境でのフォールバック設計
 
----
-
 ## なぜ構造化出力が難しいのか
 
 ### LLMの自由度が諸刃の剣
@@ -99,8 +97,6 @@ for i in range(5):
 
 これらを体系的に防ぐのが、本記事のテーマです。
 
----
-
 ## アプローチ1: JSON Mode（最もシンプル）
 
 ### 概要
@@ -147,8 +143,6 @@ JSON Modeは**フォーマット**は保証しますが、**スキーマ**は保
 - 出力構造が比較的シンプル
 - プロンプトで形式を十分に制御できる
 - 軽量な用途でオーバーヘッドを避けたい
-
----
 
 ## アプローチ2: Structured Output（OpenAI最新機能）
 
@@ -224,8 +218,6 @@ print(employee.address.prefecture)  # "東京都"
 print(employee.skills)              # ["Python", "Kubernetes"]
 print(employee.is_manager)          # True
 ```
-
----
 
 ## アプローチ3: Function Calling（複数の出力パターンに対応）
 
@@ -311,8 +303,6 @@ flowchart TD
     C -->|No| F[JSON Mode\n- シンプル\n- 軽量◎]
     D --> G[複数のツールから選択\nエージェントシナリオ]
 ```
-
----
 
 ## アプローチ4: Instructorライブラリ（プロバイダ非依存の最強ツール）
 
@@ -469,8 +459,6 @@ for partial_report in report_stream:
         print(f"セクション数: {len(partial_report.sections)}")
 ```
 
----
-
 ## 高度なテクニック：複雑なスキーマ設計
 
 ### Union型による多態的な出力
@@ -561,8 +549,6 @@ for person in persons:
 # 鈴木花子: リードエンジニア
 # 山田次郎: デザイナー
 ```
-
----
 
 ## 本番設計：フォールバックとエラーハンドリング
 
@@ -676,8 +662,6 @@ class CachedStructuredOutputService:
         return result
 ```
 
----
-
 ## 実践例：ドキュメント解析パイプライン
 
 以下は、契約書から重要情報を自動抽出する実際的なユースケースです。
@@ -775,8 +759,6 @@ print(f"違約金: {info.has_penalty_clause}")       # True
 print(f"リスクレベル: {info.risk_level}/5")       # 3/5
 ```
 
----
-
 ## パフォーマンスとコストの最適化
 
 ### モデル選択の指針
@@ -823,8 +805,6 @@ async def batch_summarize(documents: List[str]) -> List[DocumentSummary]:
 summaries = asyncio.run(batch_summarize(documents))
 ```
 
----
-
 ## まとめ：信頼できるAIアプリへの道
 
 LLMの構造化出力は、**AIアプリを実験レベルから本番品質に引き上げる**ための核心技術です。
@@ -850,8 +830,6 @@ flowchart LR
 3. **バリデーションを実装する**: `@validator` や `Field(ge=...)` で値の妥当性を保証します
 4. **フォールバックを用意する**: 本番ではLLMが失敗する前提で設計しましょう
 5. **Instructorを試す**: マルチプロバイダ対応と自動リトライは、長期的な保守コストを大幅に下げます
-
----
 
 ## 参考リソース
 

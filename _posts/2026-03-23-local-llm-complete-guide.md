@@ -28,8 +28,6 @@ mermaid: true
 
 本記事では、ローカルLLMを**実務レベルで運用するための全知識**を体系的に解説します。
 
----
-
 ## ローカルLLM vs クラウドAPI：何を選ぶべきか
 
 まず意思決定の整理から始めましょう。
@@ -52,8 +50,6 @@ mermaid: true
 3. ネットワーク非依存の組み込みシステムや工場系IoT
 4. モデルをファインチューニングして自社ドメインに特化させたいとき
 5. 特定のレイテンシSLAを満たす必要があるとき
-
----
 
 ## 主要ツール3選の比較
 
@@ -125,8 +121,6 @@ cmake --build build --config Release
 
 llama.cppは**CPU only**でも動作するため、GPUなし環境やRaspberry Pi、Androidまで対応範囲が広いです。
 
----
-
 ## モデル選定ガイド2026
 
 モデル選定は「ハードウェアスペック × ユースケース」で決まります。
@@ -164,8 +158,6 @@ llama.cppは**CPU only**でも動作するため、GPUなし環境やRaspberry P
 2位: Phi-4（14B、数学ベンチマーク高評価）
 3位: QwQ-32B（Alibaba推論特化モデル）
 ```
-
----
 
 ## 実践：Ollamaで開発環境を構築する
 
@@ -281,8 +273,6 @@ for doc in docs:
     print(doc.page_content)
 ```
 
----
-
 ## 実践：vLLMでプロダクション環境を構築する
 
 ### 高スループットサーバーのセットアップ
@@ -348,8 +338,6 @@ results = asyncio.run(batch_analyze(codes))
 print(f"処理完了: {len(results)}件")
 ```
 
----
-
 ## 量子化：モデルを小さくする技術
 
 **量子化（Quantization）**は、モデルの重みを32bit浮動小数点から低精度形式に変換することで、メモリ使用量と推論速度を改善する技術です。
@@ -413,8 +401,6 @@ model.save_quantized(quant_path)
 tokenizer.save_pretrained(quant_path)
 print(f"量子化完了: {quant_path}")
 ```
-
----
 
 ## パフォーマンスチューニング実践
 
@@ -512,8 +498,6 @@ def benchmark_llm(url: str, model: str, n_requests: int = 20):
 benchmark_llm("http://localhost:11434", "llama3.3")
 ```
 
----
-
 ## プロダクション運用のポイント
 
 ### セキュリティ設定
@@ -596,8 +580,6 @@ curl -X POST http://localhost:8000/v1/chat/completions \
     }'
 ```
 
----
-
 ## よくある問題と解決策
 
 ### 問題1: VRAM不足（OOM Error）
@@ -646,8 +628,6 @@ messages = [
 llm = ChatOllama(model="llama3.3", temperature=0.1)
 ```
 
----
-
 ## ハードウェア選定ガイド
 
 ### 開発・検証用（個人・小チーム）
@@ -665,8 +645,6 @@ llm = ChatOllama(model="llama3.3", temperature=0.1)
 | A100 40GB × 1 | 40GB | クラウド約1,500円/h | 300 tokens/sec |
 | A100 80GB × 2 | 160GB | クラウド約3,000円/h | 800 tokens/sec |
 | H100 80GB × 4 | 320GB | クラウド約8,000円/h | 2,000 tokens/sec |
-
----
 
 ## まとめ：ローカルLLM導入ロードマップ
 
@@ -687,8 +665,6 @@ graph LR
 5. **日本語対応**: Llama-3.1-Swallow、Qwen2.5などの多言語モデルが高品質
 
 ローカルLLMは「プライバシーを守りながら、クラウドAPIに近い品質を実現する」現実的な選択肢になりました。まずはOllamaで手元のMacやLinux PCに試してみることをお勧めします。意外なほど簡単に動き始めるはずです。
-
----
 
 ## 参考リンク
 

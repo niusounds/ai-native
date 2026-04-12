@@ -30,8 +30,6 @@ mermaid: true
 - コスト最適化と品質向上のトレードオフ
 - 本番運用での注意点
 
----
-
 ## マルチモーダルLLMの全体像
 
 ### 対応するモダリティ比較（2026年Q1時点）
@@ -79,8 +77,6 @@ graph TD
     C --> F --> G
     G --> H --> I --> J
 ```
-
----
 
 ## 画像認識・解析の実践
 
@@ -173,6 +169,7 @@ print(f"推定トークン数: {tokens}")  # 約595トークン
 
 ### スクリーンショット解析（UIテスト自動化への応用）
 
+{% raw %}
 ```python
 import asyncio
 from playwright.async_api import async_playwright
@@ -231,8 +228,8 @@ JSON形式で回答してください:
 #     "ログインボタンは存在しますか？アクセシビリティ上の問題はありますか？"
 # ))
 ```
+{% endraw %}
 
----
 
 ## PDF・ドキュメント処理
 
@@ -412,8 +409,6 @@ def analyze_pdf_claude(pdf_path: str, question: str) -> str:
     return response.content[0].text
 ```
 
----
-
 ## 音声処理
 
 ### Whisper APIによる文字起こし
@@ -524,8 +519,6 @@ def audio_chat_with_gpt4o(audio_path: str, text_prompt: str = "") -> dict:
     }
 ```
 
----
-
 ## 動画理解（Gemini 2.0）
 
 GeminiはYouTube URLや動画ファイルをネイティブにサポートします：
@@ -580,8 +573,6 @@ def analyze_local_video(video_path: str, question: str) -> str:
 #     "この動画で説明されている技術的な概念を3点にまとめてください"
 # )
 ```
-
----
 
 ## 高度な実装パターン
 
@@ -703,6 +694,7 @@ def extract_receipt_data(image_path: str) -> Receipt:
 
 ### パターン3：複数画像の比較・差分検出
 
+{% raw %}
 ```python
 from openai import OpenAI
 import base64
@@ -756,8 +748,8 @@ def compare_images(image_path_1: str, image_path_2: str, context: str = "") -> d
     import json
     return json.loads(response.choices[0].message.content)
 ```
+{% endraw %}
 
----
 
 ## コスト最適化戦略
 
@@ -857,8 +849,6 @@ def select_vision_model(task: TaskComplexity, provider: str = "openai") -> Model
 # MEDIUM（high detail、1080p）: 約$0.006
 # COMPLEX（high detail、4K）: 約$0.025
 ```
-
----
 
 ## 本番運用での注意点
 
@@ -981,8 +971,6 @@ class MultimodalAuditLog:
         self.conn.commit()
 ```
 
----
-
 ## ユースケース別クイックリファレンス
 
 | ユースケース | 推奨モデル | アプローチ | 月コスト目安（1000件/月） |
@@ -995,8 +983,6 @@ class MultimodalAuditLog:
 | 図表・グラフ解析 | GPT-4o | high detail | ~$25 |
 | 動画コンテンツ分析 | Gemini 2.0 Flash | 動画直接入力 | ~$10 |
 | マルチモーダルRAG | GPT-4o + text-embedding-3-small | 説明文生成→エンベディング | ~$20 |
-
----
 
 ## まとめ
 
@@ -1024,8 +1010,6 @@ class MultimodalAuditLog:
 - 機密データはローカルモデルかプライベートデプロイを検討
 
 テキスト処理だけで使っているLLMを、今日からマルチモーダルに拡張してみてください。スキャンPDFの自動処理、UIテストの自動化、会議録の構造化など、エンジニアの日常業務を大きく効率化できるユースケースが身近にあるはずです。
-
----
 
 ## 参考資料
 

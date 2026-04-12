@@ -22,8 +22,6 @@ mermaid: true
 
 2026年現在、LangGraph、CrewAI、Microsoft AutoGen、OpenAI Agents SDKなどのフレームワークが成熟し、マルチエージェントシステムは「研究」から「実用」の段階に移行しました。本記事では、**実際のプロダクションで使えるマルチエージェント設計パターン**を体系的に解説します。
 
----
-
 ## なぜマルチエージェントが必要か
 
 ### 単一エージェントの限界
@@ -57,8 +55,6 @@ mermaid: true
 | 信頼性 | エラー時の再試行・フォールバック |
 | 自己検証 | クリティック（批評）エージェントが独立してレビュー |
 
----
-
 ## 核心概念：エージェントの役割を定義する
 
 マルチエージェントシステムを設計する前に、エージェントの役割を明確にしましょう。
@@ -85,8 +81,6 @@ mermaid: true
 │   → 成果物の品質・正確性を独立検証        │
 └─────────────────────────────────────────┘
 ```
-
----
 
 ## パターン1: オーケストレーター／ワーカーパターン
 
@@ -174,8 +168,6 @@ async def run_orchestrated_task(user_request: str) -> str:
 - 各サブタスクの依存関係が明確な場合
 - 全体的な品質管理が重要な場合
 
----
-
 ## パターン2: 並列処理パターン（Parallel Fan-Out/Fan-In）
 
 独立したサブタスクを同時並行で処理し、結果を集約するパターンです。
@@ -215,7 +207,7 @@ async def security_analyst(state: AnalysisState) -> dict:
     
 {state['document']}
 
-JSON形式で返してください: {{"risks": [...], "severity": "low|medium|high"}}"""
+{% raw %}JSON形式で返してください: {{"risks": [...], "severity": "low|medium|high"}}"""{% endraw %}
     result = await llm.ainvoke(prompt)
     return {"results": [{"agent": "security", "output": result.content}]}
 
@@ -225,7 +217,7 @@ async def performance_analyst(state: AnalysisState) -> dict:
     
 {state['document']}
 
-JSON形式で返してください: {{"bottlenecks": [...], "suggestions": [...]}}"""
+{% raw %}JSON形式で返してください: {{"bottlenecks": [...], "suggestions": [...]}}"""{% endraw %}
     result = await llm.ainvoke(prompt)
     return {"results": [{"agent": "performance", "output": result.content}]}
 
@@ -285,8 +277,6 @@ quality(6s)     ┘
 
 → 約40%の時間短縮
 ```
-
----
 
 ## パターン3: チェッカー／クリティックパターン
 
@@ -350,6 +340,7 @@ class GeneratorCriticSystem:
             draft = gen_result.content
             
             # 評価フェーズ
+{% raw %}
             critic_prompt = f"""以下の出力を厳密に評価してください:
 
 タスク: {task}
@@ -370,6 +361,8 @@ class GeneratorCriticSystem:
 - 完全性（タスクを完全に達成しているか）
 - 品質（プロ水準の仕上がりか）
 - 安全性（有害な内容が含まれていないか）"""
+{% endraw %}
+
 
             critic_result = await self.critic.ainvoke(critic_prompt)
             review = ReviewResult.model_validate_json(critic_result.content)
@@ -403,8 +396,6 @@ result = await system.generate_with_critique(
 print(result["final_output"])
 print(f"\n品質スコア: {result['final_score']}/100（{result['iterations']}回イテレーション）")
 ```
-
----
 
 ## パターン4: 特化型エージェントチームパターン
 
@@ -508,8 +499,6 @@ crew = Crew(
 result = crew.kickoff(inputs={"user_request": "ユーザー認証付きTODOアプリのAPIを作りたい"})
 ```
 
----
-
 ## パターン5: ヒューマン・イン・ザ・ループパターン
 
 重要な判断ポイントで人間の承認を求めるパターンです。本番システムで特に重要です。
@@ -610,8 +599,6 @@ final_result = app.invoke(
 )
 ```
 
----
-
 ## エラーハンドリングとレジリエンス
 
 マルチエージェントシステムは障害点が増えるため、適切なエラーハンドリングが不可欠です。
@@ -681,8 +668,6 @@ class ResilientAgentRunner:
         return {"status": "failed", "error": str(last_error)}
 ```
 
----
-
 ## 可観測性：マルチエージェントのデバッグ
 
 単一エージェントと違い、複数エージェントが絡み合うシステムのデバッグは複雑です。
@@ -748,8 +733,6 @@ class AgentTracer:
 #     ✅ [ReviewAgent (retry)] 2890ms | tokens: 200→540
 ```
 
----
-
 ## アンチパターン：よくある失敗
 
 ### ❌ アンチパターン1: 過剰なエージェント分割
@@ -799,8 +782,6 @@ summary = summarizer.extract_key_info(previous_agent_raw_output)
 next_agent_input = f"要点:\n{summary}"  # 500トークン
 ```
 
----
-
 ## まとめ：どのパターンを選ぶか
 
 | シナリオ | 推奨パターン |
@@ -815,8 +796,6 @@ next_agent_input = f"要点:\n{summary}"  # 500トークン
 マルチエージェントシステムは強力ですが、**複雑さはコストです**。まず単一エージェントで解けないかを考え、解けない場合に最小限のマルチエージェント構成を選ぶことが、AIネイティブエンジニアとしての成熟した判断です。
 
 次回は、これらのマルチエージェントシステムを本番環境で運用するための **LLMOps実践ガイド** を紹介します。
-
----
 
 ## 参考リソース
 

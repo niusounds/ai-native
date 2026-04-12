@@ -24,8 +24,6 @@ mermaid: true
 
 たとえば「数学に強いモデル」と「コーディングに強いモデル」を同じベースから派生させてマージすると、**どちらの能力も持つモデル**が誕生します。Hugging Face上でも `WizardMath`、`Dolphin`、`Nous-Hermes` などの人気モデルが実はマージモデルです。
 
----
-
 ## モデルマージの仕組み：直感的な理解
 
 なぜ重みをブレンドするだけで機能するのでしょうか？
@@ -61,8 +59,6 @@ code_vector = code_model_weights - base_weights
 # 両方の能力を持つモデル
 merged_weights = base_weights + 0.5 * math_vector + 0.5 * code_vector
 ```
-
----
 
 ## Mergekit：モデルマージの標準ツール
 
@@ -112,8 +108,6 @@ mergekit-yaml merge_config.yml ./output_model \
   --lazy-unpickle \
   --low-cpu-memory
 ```
-
----
 
 ## 主要なマージ手法
 
@@ -171,8 +165,6 @@ parameters:
 dtype: bfloat16
 ```
 
----
-
 ### 2. TIES（重みの干渉を除去するマージ）
 
 **TIES-Merging（Trim, Elect Sign & Merge、2023）** は、複数モデルをマージする際の**パラメータ干渉問題**を解決します。
@@ -206,8 +198,6 @@ parameters:
   int8_mask: true  # メモリ効率化
 dtype: bfloat16
 ```
-
----
 
 ### 3. DARE（スパース化によるノイズ除去）
 
@@ -247,8 +237,6 @@ models:
 dtype: bfloat16
 ```
 
----
-
 ### 4. Frankenmerge（レイヤースタッキング）
 
 **Frankenmerge** はSLERPやTIESとは全く異なるアプローチで、異なるモデルのレイヤーを **積み重ねて** 大きなモデルを作る手法です。
@@ -274,8 +262,6 @@ slices:
 ```
 
 ⚠️ **注意**: アーキテクチャが完全に同一（同じベースモデルから派生）でないとレイヤーサイズが合わず失敗します。
-
----
 
 ### 5. Task Arithmetic
 
@@ -307,8 +293,6 @@ merged = {
 save_file(merged, "merged_model/model.safetensors")
 ```
 
----
-
 ## 実践レシピ集
 
 ### レシピ1：汎用性能+コーディング能力のバランスモデル
@@ -338,8 +322,6 @@ tokenizer_source: union
 
 > ⚠️ **注意**: 異なるトークナイザーを持つモデル（QwenとLlamaなど）のマージは、`tokenizer_source: union` が必要で、語彙の整合性確保が重要です。同じベースモデルから派生したモデルのマージの方が安全です。
 
----
-
 ### レシピ2：日本語+英語能力の強化
 
 ```yaml
@@ -362,8 +344,6 @@ parameters:
 dtype: bfloat16
 ```
 
----
-
 ### レシピ3：スパース化で軽量化しつつ能力保持
 
 ```yaml
@@ -379,8 +359,6 @@ models:
 
 dtype: bfloat16
 ```
-
----
 
 ## マージ後の評価方法
 
@@ -455,8 +433,6 @@ quick_eval("./merged_model", test_prompts)
 
 *数字はダミーです。実際のマージ結果は手法・設定により大きく異なります。*
 
----
-
 ## Hugging Faceへのアップロード
 
 満足のいくマージモデルができたらHugging Faceで共有できます：
@@ -486,8 +462,6 @@ print(f"モデルをアップロードしました: https://huggingface.co/{MODE
 - マージ手法とパラメータ
 - 評価結果
 - ライセンス継承（ベースモデルのライセンスに従う）
-
----
 
 ## よくある失敗と対処法
 
@@ -531,8 +505,6 @@ parameters:
 merge_method: ties  # SLERPからTIESに変更
 # または dare_ties で干渉をより積極的に除去
 ```
-
----
 
 ## 高度なテクニック
 
@@ -581,8 +553,6 @@ evaluation:
   limit: 200  # 高速化のためサブセットで評価
 ```
 
----
-
 ## モデルマージのベストプラクティス
 
 ```mermaid
@@ -607,8 +577,6 @@ graph TD
 5. **小さいモデルで実験** — 7Bで成功してから70Bへスケール
 6. **ベンチマークで定量評価** — 主観的な評価だけに頼らない
 
----
-
 ## まとめ
 
 モデルマージは「**ファインチューニングなしの能力拡張**」という強力な手法です。
@@ -622,8 +590,6 @@ graph TD
 | Frankenmerge | モデルサイズ変更 | レイヤー選択的な統合 |
 
 GPUメモリが少ない環境でも、CPU上でマージ自体は実行可能です。まずは小さなモデルで試して、マージの感覚をつかんでみてください。
-
----
 
 ## 参考資料
 

@@ -23,8 +23,6 @@ AIエージェントが本当に役に立つには、外部のツールやデー
 - Python/TypeScriptでMCPサーバーを自作する方法
 - 本番運用で意識すべきポイント
 
----
-
 ## MCPとは何か
 
 ### 背景にある問題
@@ -57,8 +55,6 @@ MCPサーバーが提供できるリソースは3種類あります：
 | **Tools** | AIが呼び出せる関数 | `execute_sql`, `create_file` |
 | **Resources** | 読み取り可能なデータ | ファイル内容、DBスキーマ |
 | **Prompts** | 再利用可能なプロンプトテンプレート | コードレビュー用プロンプト |
-
----
 
 ## 既存MCPサーバーを使う
 
@@ -111,8 +107,6 @@ npx @modelcontextprotocol/server-sqlite      # SQLite
 npx @modelcontextprotocol/server-brave-search # Web検索
 npx @modelcontextprotocol/server-puppeteer   # ブラウザ操作
 ```
-
----
 
 ## MCPサーバーを自作する（Python）
 
@@ -221,8 +215,6 @@ if __name__ == "__main__":
   }
 }
 ```
-
----
 
 ## 実践的なMCPサーバー：社内APIラッパー
 
@@ -384,8 +376,6 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
----
-
 ## MCPサーバーを自作する（TypeScript）
 
 Node.js/TypeScript環境での実装も見てみましょう。
@@ -541,8 +531,6 @@ npm install @modelcontextprotocol/sdk
 npx tsc
 ```
 
----
-
 ## セキュリティ設計のベストプラクティス
 
 MCPサーバーはAIが自律的に呼び出すため、セキュリティが非常に重要です。
@@ -628,8 +616,6 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
         raise
 ```
 
----
-
 ## MCPをLangChainやOpenAIから利用する
 
 MCPはClaudeだけのものではありません。任意のAIフレームワークから利用できます。
@@ -670,8 +656,6 @@ async def run_agent():
 
 asyncio.run(run_agent())
 ```
-
----
 
 ## よくある問題と解決策
 
@@ -731,8 +715,6 @@ Tool(
     ...
 )
 ```
-
----
 
 ## まとめ
 
