@@ -1,32 +1,34 @@
 // ============================================
-// Variables - Light theme (clean tech blog)
+// Variables - Technical Brutalism / Engineering Journal
 // ============================================
 
 // Colors
-$color-bg:          #f7f7f8;
+$color-bg:          #fffced;   // Warm paper/blueprint white
 $color-bg-elevated: #ffffff;
 $color-bg-card:     #ffffff;
-$color-bg-hover:    #f0f0f5;
-$color-border:      #e4e4e7;
-$color-border-glow: rgba(99, 102, 241, 0.3);
+$color-bg-hover:    #fffde3;
+$color-border:      #000000;   // Strong black borders
+$color-border-thin: #e0ddd0;
+$color-border-glow: rgba(0, 0, 0, 0.1); // No real glow, just subtle accent
 
 // Brand colors
-$color-primary:     #6366f1;   // Indigo
-$color-secondary:   #4f46e5;   // Deeper indigo
-$color-accent:      #10b981;   // Emerald accent
-$color-warning:     #f59e0b;
+$color-primary:     #fb8500;   // Bold Safety Orange
+$color-secondary:   #023047;   // Deep Navy / Prussian Blue
+$color-accent:      #219ebc;   // Technical Blue
+$color-warning:     #ffb703;
 
 // Text colors
-$color-text:        #1a1a1a;
-$color-text-muted:  #6b7280;
-$color-text-faint:  #9ca3af;
-$color-heading:     #111827;
-$color-link:        $color-primary;
-$color-link-hover:  $color-secondary;
+$color-text:        #121212;
+$color-text-muted:  #4a4a4a;
+$color-text-faint:  #8b8b8b;
+$color-heading:     #000000;
+$color-link:        $color-text;
+$color-link-hover:  $color-primary;
 
 // Typography
-$font-sans:    'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-$font-mono:    'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+$font-sans:    'Space Grotesk', 'Inter', 'Noto Sans JP', sans-serif;
+$font-serif:   'Crimson Pro', 'Georgia', serif; // For editorial feel
+$font-mono:    'JetBrains Mono', 'Fira Code', monospace;
 
 $font-size-xs:   0.75rem;    // 12px
 $font-size-sm:   0.875rem;   // 14px
@@ -34,13 +36,13 @@ $font-size-base: 1rem;       // 16px
 $font-size-lg:   1.125rem;   // 18px
 $font-size-xl:   1.25rem;    // 20px
 $font-size-2xl:  1.5rem;     // 24px
-$font-size-3xl:  1.875rem;   // 30px
-$font-size-4xl:  2.25rem;    // 36px
-$font-size-5xl:  3rem;       // 48px
+$font-size-3xl:  2rem;       // 32px
+$font-size-4xl:  2.5rem;     // 40px
+$font-size-5xl:  3.5rem;     // 56px
 
-$line-height-tight:  1.25;
-$line-height-normal: 1.6;
-$line-height-loose:  1.8;
+$line-height-tight:  1.1;
+$line-height-normal: 1.5;
+$line-height-loose:  1.7;
 
 // Spacing
 $spacing-1:  0.25rem;
@@ -56,41 +58,43 @@ $spacing-20: 5rem;
 $spacing-24: 6rem;
 
 // Layout
-$max-width:         1200px;
-$max-width-content: 720px;
-$nav-height:        64px;
+$max-width:         1280px;
+$max-width-content: 760px;
+$nav-height:        72px;
 
 // Borders
-$border-radius-sm:  0.25rem;
-$border-radius:     0.5rem;
-$border-radius-lg:  0.75rem;
-$border-radius-xl:  1rem;
+$border-radius-sm:  0; // Sharp corners
+$border-radius:     0; // Sharp corners
+$border-radius-lg:  0; // Sharp corners
+$border-radius-xl:  0; // Sharp corners
+$border-width:      2px;
+$border-width-thick: 4px;
 
-// Shadows (clean, subtle for light theme)
-$glow-primary:   0 0 0 3px rgba($color-primary, 0.15);
-$glow-secondary: 0 0 0 3px rgba($color-secondary, 0.15);
-$shadow-card:    0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.05);
-$shadow-hover:   0 4px 12px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+// Shadows (Brutalist flat shadows)
+$glow-primary:   4px 4px 0 0 $color-primary;
+$glow-secondary: 4px 4px 0 0 $color-secondary;
+$shadow-card:    6px 6px 0 0 $color-border;
+$shadow-hover:   10px 10px 0 0 $color-primary;
 
-// Code / Syntax (GitHub light theme)
-$color-code-bg:      #f4f4f5;
-$color-code-text:    #d73a49;
-$color-pre-bg:       #f6f8fa;
+// Code / Syntax (Modified technical theme)
+$color-code-bg:      #f0f0f0;
+$color-code-text:    #000000;
+$color-pre-bg:       #ffffff;
 
 $syntax-highlight-bg: #fffbdd;
-$syntax-comment:      #6a737d;
-$syntax-keyword:      #d73a49;
-$syntax-name:         #005cc5;
-$syntax-string:       #032f62;
-$syntax-function:     #6f42c1;
-$syntax-number:       #005cc5;
-$syntax-variable:     #e36209;
-$syntax-tag:          #22863a;
+$syntax-comment:      #999999;
+$syntax-keyword:      #0000ff;
+$syntax-name:         #000000;
+$syntax-string:       #008000;
+$syntax-function:     #ff00ff;
+$syntax-number:       #ff8000;
+$syntax-variable:     #000000;
+$syntax-tag:          #0000ff;
 
-// Transitions
-$transition-fast:   150ms ease;
-$transition-normal: 250ms ease;
-$transition-slow:   400ms ease;
+// Transitions (Snap, no bounce)
+$transition-fast:   100ms ease-out;
+$transition-normal: 200ms ease-out;
+$transition-slow:   300ms ease-out;
 
 // Z-index
 $z-nav:     100;
