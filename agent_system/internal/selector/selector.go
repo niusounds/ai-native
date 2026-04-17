@@ -3,18 +3,16 @@ package selector
 import (
 	"context"
 	"fmt"
-	"os"
 	"strings"
 
-	"agent_system/internal/config"
-	"agent_system/internal/repository"
-	"github.com/gocolly/colly/v2"
+	"ai-native-publisher/internal/config"
+	"ai-native-publisher/internal/repository"
 )
 
 type TopicSelector struct {
 	cfg          *config.Config
 	repo         *repository.PostRepository
-	ollamaClient *OllamaClient // Interface or real client
+	ollamaClient OllamaClient // Interface or real client
 }
 
 type OllamaClient interface {
@@ -26,7 +24,6 @@ func NewTopicSelector(cfg *config.Config, repo *repository.PostRepository, clien
 		cfg:          cfg,
 		repo:         repo,
 		ollamaClient: client,
-	}
 	}
 }
 

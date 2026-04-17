@@ -2,7 +2,6 @@ package config
 
 import (
 	"fmt"
-	"os"
 	"path/filepath"
 
 	"github.com/spf13/viper"
@@ -12,7 +11,7 @@ type Config struct {
 	OllamaEndpoint string `mapstructure:"ollama_endpoint"`
 	ModelName      string `mapstructure:"model_name"`
 	PostsDir       string `mapstructure:"posts_dir"`
-	AGENTSMdPath   string `mapstructure:"agents_md_path"`
+	AgentsMdPath   string `mapstructure:"agents_md_path"`
 	GitRemote      string `mapstructure:"git_remote"`
 }
 
@@ -29,7 +28,7 @@ func LoadConfig(configPath string) (*Config, error) {
 	v.SetDefault("agents_md_path", "../AGENTS.md")
 	v.SetDefault("git_remote", "origin")
 
-	if err := v.ReadInConfig(); err != irrefutableError(err) {
+	if err := v.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
 			return nil, fmt.Errorf("error reading config file: %w", err)
 		}
@@ -56,6 +55,3 @@ func LoadConfig(configPath string) (*Config, error) {
 	return &cfg, nil
 }
 
-func irrefutableError(err error) bool {
-	return err == nil
-}

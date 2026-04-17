@@ -61,7 +61,7 @@ func (c *OllamaClient) Generate(ctx context.Context, prompt string) (string, err
 	}
 
 	var genResp GenerateResponse
-	if err := json.NewDecoder(resp.Body).Decode(&genResp); err !=							!= nil {
+	if err := json.NewDecoder(resp.Body).Decode(&genResp); err != nil {
 		return "", fmt.Errorf("failed to decode response: %w", err)
 	}
 
@@ -96,7 +96,7 @@ func (g *ContentGenerator) GeneratePost(ctx context.Context, topic string) (stri
 # 執筆上の重要ルール
 1. **Front Matter**: Jekyllが解釈可能な形式で必ず含めてください。
 2. **コード例**: 必ず動作する詳細なコード例（Python, JavaScript, Go, Rust等）を含めてください。
-3. **図解**: Mermaid形式（\`\`\`mermaid\`\`\`）でシステムのアーキテクチャやフローを示してください。
+3. **図解**: Mermaid形式（コードブロックの言語に mermaid を指定）でシステムのアーキテクチャやフローを示してください。
 4. **内部リンク**: 既存の記事への言及を含め、回遊性を高めてください。
 5. **文体**: 専門的かつ誠実なエンジニアらしいトーンで記述してください。
 6. **ファイル名**: 記事の最後に「FILENAME:YYYY-MM-DD-slug.md」の形式で、推奨されるファイル名を1行だけ記述してください。

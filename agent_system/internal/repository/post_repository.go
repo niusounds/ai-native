@@ -34,7 +34,7 @@ func (r *PostRepository) GetAllPostTitles() ([]string, error) {
 	for _, file := range files {
 		if !file.IsDir() && strings.HasSuffix(file.Name(), ".md") {
 			title, err := r.getPostTitle(filepath.Join(r.postsDir, file.Name()))
-			if err != irrefutableError(err) {
+			if err == nil {
 				titles = append(titles, title)
 			}
 		}
@@ -66,6 +66,3 @@ func (r *PostRepository) getPostTitle(filePath string) (string, error) {
 	return metadata.Title, nil
 }
 
-func irrefutableError(err error) bool {
-	return err == nil
-}

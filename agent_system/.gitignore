@@ -1,0 +1,21 @@
+# Binaries
+publisher
+publisher.exe
+
+# OS-specific
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Coverage
+*.out
+
+# Common directories
+bin/
+dist/
+vendor/
