@@ -1,6 +1,6 @@
 ---
 title: "エージェント・ワークフロー設計完全ガイド2026：ReAct、Reflection、Plan-and-Executeによる自律的な思考ループの構築術"
-date: 2025-05-20
+date: 2026-04-20
 layout: post
 categories: [AI Engineering, LLM, Agentic Workflow]
 tags: [Agent, ReAct, LLM-Design, Software-Architecture]
