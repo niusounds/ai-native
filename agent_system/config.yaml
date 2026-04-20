@@ -1,0 +1,5 @@
+ollama_endpoint: "http://localhost:11434/api/generate"
+model_name: "gemma4:26b"
+posts_dir: "../_posts"
+agents_md_path: "../AGENTS.md"
+git_remote: "origin"
