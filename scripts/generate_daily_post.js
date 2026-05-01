@@ -19,6 +19,26 @@ async function generatePost() {
     }
 
     const agentsMd = fs.readFileSync(agentsMdPath, 'utf8');
+    /**
+     * Returns an array of titles from existing posts in _posts directory.
+     */
+    function getPastPostTitles() {
+        const titles = [];
+        if (fs.existsSync(postsDir)) {
+            const files = fs.readdirSync(postsDir);
+            files.forEach(file => {
+                if (file.endsWith('.md')) {
+                    const fullPath = path.join(postsDir, file);
+                    const content = fs.readFileSync(fullPath, 'utf8');
+                    const match = content.match(/^title:\s*["']?(.*?)["']?$/m);
+                    if (match) {
+                        titles.push(match[1].trim());
+                    }
+                }
+            });
+        }
+        return titles;
+    }
 
     // 引数からトピックを取得（デフォルト値あり）
     const topic = process.argv[2] || "AIエージェントの自律化における最新トレンドと課題";
@@ -26,10 +46,17 @@ async function generatePost() {
     const date = new Date();
     const dateStr = date.toISOString().split('T')[0];
 
+    // ファイル名の抽出前に過去記事タイトルを取得
+    const pastTitles = getPastPostTitles();
+    const pastList = pastTitles.length ? pastTitles.map(t => `- ${t}`).join('\n') : '（過去記事なし）';
+
     // プロンプトの構築（AGENTS.mdのルールを注入）
     const prompt = `
 あなたは「AI Native Engineer」ブログの専属執筆エージェントです。
 以下の「AGENTS.md」に記載された執筆ガイドライン、構成案、SEOルールを完全に遵守して、最高品質の記事を作成してください。
+
+# 過去の記事タイトル
+${pastList}
 
 # コンテキスト: AGENTS.md (執筆ルール)
 ${agentsMd}
