@@ -40,8 +40,8 @@ async function generatePost() {
         return titles;
     }
 
-    // 引数からトピックを取得（デフォルト値あり）
-    const topic = process.argv[2] || "AIエージェントの自律化における最新トレンドと課題";
+    // トピックはLLMに自動生成させる（引数で指定可能）
+    let topic = process.argv[2];
 
     const date = new Date();
     const dateStr = date.toISOString().split('T')[0];
@@ -53,7 +53,14 @@ async function generatePost() {
     // プロンプトの構築（AGENTS.mdのルールを注入）
     const prompt = `
 あなたは「AI Native Engineer」ブログの専属執筆エージェントです。
-以下の「AGENTS.md」に記載された執筆ガイドライン、構成案、SEOルールを完全に遵守して、最高品質の記事を作成してください。
+
+## トピックについて
+- トピックが既に指定されている場合は、そのテーマで記事を作成してください。
+- トピックが未指定の場合は、以下の基準で自分で最適なトピックを1つ選定してください:
+  1. **最新性**: 2025-2026年のAI関連技術・トレンドに関連するもの
+  2. **実用性**: エンジニアが実際に活用できる具体的な知見を含めるもの
+  3. **独自性**: 過去の投稿タイトルと重複しないもの
+  4. **深さ**: 中級〜上級エンジニアにとって価値のある技術的深みがあるもの
 
 # 過去の記事タイトル
 ${pastList}
@@ -62,24 +69,31 @@ ${pastList}
 ${agentsMd}
 
 # 今日の執筆タスク
-- トピック: ${topic}
+- トピック: ${topic || '自分で最適なトピックを1つ選定して決定してください。AI関連の最新技術・トレンドから、エンジニアにとって価値のある主题を選んでください'}
 - 公開日: ${dateStr}
+- 選択したトピック: ${topic ? '' : '（上記で自己決定）'}
 - 読者ターゲット: エンジニア（中級〜上級）
 - 言語: 日本語
 
 # 執筆上の重要ルール
-1. **Front Matter**: Jekyllが解釈可能な形式で必ず含めてください。
-2. **コード例**: 必ず動作する詳細なコード例（Python, JavaScript, Go, Rust等）を含めてください。
-3. **図解**: Mermaid形式（\`\`\`mermaid\`\`\`）でシステムのアーキテクチャやフローを示してください。
-4. **内部リンク**: 既存の記事（reasoning-models, llm-evals, memory-system, finetuning-lora, observability-guide）への言及を含め、回遊性を高めてください。
-5. **文体**: 専門的かつ誠実なエンジニアらしいトーンで記述してください。
-6. **ファイル名**: 記事の最後に「FILENAME: YYYY-MM-DD-slug.md」の形式で、推奨されるファイル名を1行だけ記述してください。
+1. **出力形式**: 記事は **---**（フロントマター区切り記号）から直接始めてください。 planningセクション、メタ情報、要約、またはフロントマター以外の本文を記事の先頭に含めないでください。
+2. **Front Matter**: Jekyllが解釈可能な形式で必ず含めてください。
+3. **コード例**: 必ず動作する詳細なコード例を含めてください。変数名の誤字脱字に注意してください。
+4. **図解**: Mermaid形式でシステムのアーキテクチャやフローを示してください。
+5. **内部リンク**: 既存記事への言及は実際のURLパス形式で記述してください。プレースホルダ形式は禁止です。
+6. **文体**: 専門的かつ誠実なエンジニアらしいトーンで記述してください。
+7. **ファイル名**: 記事の最後に「FILENAME: YYYY-MM-DD-slug.md」の形式で、推奨されるファイル名を1行だけ記述してください。
+
+# 出力の厳格なルール
+- 記事の出力は「---」から始めてください
+- 執筆計画、タイトル案、カテゴリ案などのメタデータは出力しないでください
+- 記事の本文はフロントマター（---区切り）の外には一切記述しないでください
 
 執筆を開始してください：
 `;
 
     console.log(`[Status] 記事生成を開始します...`);
-    console.log(`[Config] Topic: "${topic}"`);
+    console.log(`[Config] Topic: ${topic || '(LLMが自動選定)'}`);
     console.log(`[Config] Model: ${MODEL}`);
 
     try {
@@ -116,6 +130,20 @@ ${agentsMd}
 
         // Markdownブロックで囲まれている場合の除去
         content = content.replace(/^```markdown\n/, '').replace(/\n```$/, '');
+
+        // 記事の先頭にある planning/メタセクションを除去
+        // 執筆の計画、タイトル案、カテゴリ案などのプレテキスト
+        content = content.replace(/^(#\s*執筆の計画[\s\S]*?)(?=\n---)/, '').trim();
+        content = content.replace(/^(#\s*Planning[\s\S]*?)(?=\n---)/, '').trim();
+        content = content.replace(/^(##\s*Plan[\s\S]*?)(?=\n---)/, '').trim();
+
+        // 先頭が --- で始まらない場合は、最初の見出しから --- の間を除去
+        if (!content.startsWith('---')) {
+            const firstFrontMatter = content.indexOf('---');
+            if (firstFrontMatter > 0) {
+                content = content.substring(firstFrontMatter);
+            }
+        }
 
         // _posts ディレクトリの確認と保存
         if (!fs.existsSync(postsDir)) {
