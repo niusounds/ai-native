@@ -7,7 +7,6 @@ categories: [ai-agents, architecture]
 tags: [AI Agents, Autonomous Agents, LLM, Reasoning, Agentic Workflow]
 author: "AI Native Engineer"
 reading_time: 12
-image: /assets/images/posts/trends-in-autonomous-ai-agents.png
 ---
 
 ## はじめに

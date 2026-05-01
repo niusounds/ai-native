@@ -7,7 +7,6 @@ categories: [ai-agents, architecture]
 tags: [Autonomous Agents, Multi-Agent Systems, LLM, AI Engineering]
 author: "AI Native Engineer"
 reading_time: 12
-image: /assets/images/posts/autonomous-agents-trends-2026.png
 ---
 
 ## はじめに

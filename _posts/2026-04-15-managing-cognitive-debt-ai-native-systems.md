@@ -7,7 +7,6 @@ categories: [architecture]
 tags: [ai-native, engineering-culture, cognitive-debt, system-design]
 author: "AI Native Engineer"
 reading_time: 12
-image: /assets/images/posts/2026-04-15-managing-cognitive-debt-ai-native-systems.png
 ---
 
 ![認知的負債とシステム思考の対比](/assets/images/posts/2026-04-15-managing-cognitive-debt-ai-native-systems.png)
